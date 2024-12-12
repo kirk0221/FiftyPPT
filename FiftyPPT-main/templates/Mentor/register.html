@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .brand-title {
+            color: green;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .signup-form {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<div class="container">
+    <div class="signup-form bg-white mt-5 p-4 rounded">
+        <div class="text-center mb-4">
+
+            <div class="d-flex justify-content-center align-items-center">
+                <a href="{% url 'about' %}" class="text-success text-decoration-none text-center">
+                    <h1 class="sitename" style="font-weight: bold;">Fifty PPT</h1>
+                </a>
+            </div>
+
+
+            <h4 class="mb-3">회원가입</h4>
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <!--<button type="submit" class="btn btn-primary btn-block" style="">가입하기</button>-->
+            <button type="submit" class="btn btn-block" style="background-color: green; color: white;">가입하기</button>
+
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

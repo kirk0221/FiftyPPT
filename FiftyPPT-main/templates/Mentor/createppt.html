@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPT 생성</title>
+    <!-- Bootstrap CSS 추가 -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .drag-drop-box {
+            border: 2px dashed #007bff;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            color: #007bff;
+            background-color: #f8f9fa;
+            cursor: pointer;
+        }
+
+        .drag-drop-box.drag-over {
+            background-color: #e0e7ff;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .info-box {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px 30px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .info-box h2 {
+            color: #4CAF50;
+            font-size: 24px;
+            margin-bottom: 20px;
+            margin-top: 50px;
+        }
+
+        .info-box p {
+            color: #555;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">PPT 생성</h1>
+    <form method="POST" enctype="multipart/form-data" class="mt-4">
+        {% csrf_token %}
+
+        <!-- 제목 입력 필드 -->
+        <div class="form-group">
+            <label for="title">PPT 제목</label>
+            <input type="text" id="title" name="title" class="form-control" required
+                   placeholder="생성하실 PPT 제목을 쓰는 칸입니다.">
+        </div>
+
+
+        <div class="info-box">
+            <!-- 드래그 앤 드롭 영역 -->
+            <div id="drag-drop-box" class="drag-drop-box mt-3">
+                여기로 이미지를 드롭하거나 클릭하여 선택하세요.
+                <input type="file" id="image-input" name="image" accept="image/*" hidden>
+                <img id="preview" class="preview-img" alt="이미지 미리보기" style="display: none;">
+            </div>
+            <h2>저희 피프티피피티 서비스 사용법!</h2>
+            <p>1. 여러분이 만들고 싶은 PPT를 간단하게 스케치해보세요!</p>
+            <p>2. 도형에 색깔을 추가하고 싶다면 도형 위에 (빨강, 주황, 노랑, 초록, 파랑, 보라) 글씨를 추가해주세요!</p>
+            <p>3. 웹 페이지 내 파일에 업로드 또는 모바일에서 사진을 찍어주세요!</p>
+            <p>4. PPT 생성페이지 업로드 후 변환하기 버튼을 누르면 끝!</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block mt-4">변환하기</button>
+    </form>
+
+    <br>
+    <a href="{% url 'about' %}" class="btn btn-secondary btn-block">홈으로 돌아가기</a>
+</div>
+
+<script>
+    const dragDropBox = document.getElementById('drag-drop-box');
+    const imageInput = document.getElementById('image-input');
+    const preview = document.getElementById('preview');
+
+    // 클릭 시 파일 선택 창 열기
+    dragDropBox.addEventListener('click', () => imageInput.click());
+
+    // 드래그 앤 드롭 영역 스타일
+    dragDropBox.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dragDropBox.classList.add('drag-over');
+    });
+
+    dragDropBox.addEventListener('dragleave', () => {
+        dragDropBox.classList.remove('drag-over');
+    });
+
+    dragDropBox.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dragDropBox.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        handleFile(file);
+    });
+
+    // 파일 선택 시 이미지 처리
+    imageInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        handleFile(file);
+    });
+
+    function handleFile(file) {
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
+</body>
+</html>
