@@ -1,3 +1,4 @@
+# 발표자료
 ![1조 캡스톤 최종발표자료_1](https://github.com/user-attachments/assets/0f34a7df-e316-4dab-84de-1d081ec0c92c)
 ![1조 캡스톤 최종발표자료_2](https://github.com/user-attachments/assets/0ed02c91-4c72-4e80-8f4d-7657bf2326a9)
 ![1조 캡스톤 최종발표자료_3](https://github.com/user-attachments/assets/ae3a7e34-0975-42cb-9e38-bf812d205b82)
@@ -20,3 +21,6 @@
 ![1조 캡스톤 최종발표자료_20](https://github.com/user-attachments/assets/0b458a44-745a-4058-90fc-e41f61c92200)
 ![1조 캡스톤 최종발표자료_21](https://github.com/user-attachments/assets/0046c9ec-839c-4636-b56f-6c77c48a207c)
 ![1조 캡스톤 최종발표자료_22](https://github.com/user-attachments/assets/2dc87ed0-e7c4-41f9-9964-ca93a0554854)
+
+# 시연 영상
+https://github.com/user-attachments/assets/41bbd673-3610-4910-a17e-6b914e98a57f
